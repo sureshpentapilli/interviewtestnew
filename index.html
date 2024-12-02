@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive BOGO Offer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        width: 360px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .container h1 {
+        color: #ff5a5f;
+        font-size: 24px;
+        margin-bottom: 16px;
+      }
+
+      .offer {
+        margin-bottom: 16px;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+      }
+      .offer.active {
+        border: 2px solid #ff5a5f !important;
+      }
+
+      .offer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .offer-header .discount {
+        font-size: 12px;
+        color: #ff5a5f;
+      }
+
+      .price {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .price .original-price {
+        font-size: 12px;
+        text-decoration: line-through;
+        color: #aaa;
+        margin-left: 4px;
+      }
+
+      .most-popular {
+        position: relative;
+        z-index: 9999;
+      }
+
+      .most-popular::after {
+        content: "MOST POPULAR";
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: #ff5a5f; /* Pink background */
+        color: #fff; /* White text */
+        font-size: 12px; /* Slightly larger font size */
+        font-weight: bold;
+        padding: 5px 8px; /* Add padding for rounded background effect */
+        border-radius: 6px; /* Rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+      }
+
+      .options {
+        display: none;
+        justify-content: start;
+        margin: 8px 0;
+      }
+     
+
+      .offer.expanded .options {
+        display: flex;
+      }
+
+      .options select {
+        padding: 4px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .free-delivery {
+        color: #4caf50;
+        font-size: 14px;
+        margin: 16px 0 8px;
+      }
+
+      .total {
+        font-size: 16px;
+        margin-bottom: 16px;
+      }
+
+      .btn {
+        display: inline-block;
+        width: 100%;
+        padding: 10px 0;
+        background-color: #ff5a5f;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background-color: #e04646;
+      }
+
+      .footer {
+        margin-top: 16px;
+        font-size: 12px;
+        color: #aaa;
+      }
+      input[type="radio"] {
+        accent-color: #ff5a5f; /* Change this to your desired color */
+      }
+
+      h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ff5a5f;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+h1::before,
+h1::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: #ddd; /* Line color */
+  margin: 0 10px; /* Space between text and line */
+}
+
+      
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>YAY! It's BOGO</h1>
+
+      <!-- Offer 1 -->
+      <div class="offer">
+        <div class="offer-header">
+          <label>
+            <input type="radio" name="offer" />
+            1 Unit <span class="discount">10% Off</span>
+          </label>
+          <span class="price"
+            >$10.00 USD<span class="original-price">$24.00 USD</span></span
+          >
+        </div>
+        <div class="options">
+            <!-- <h5>size</h4> -->
+          <select>
+            <!-- <option>Size</option> -->
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <!-- <h4>color</h4> -->
+
+          <select>
+            <option>blue</option>
+            <option>Black</option>
+            <option>White</option>
+          </select>
+        </div>
+        <div class="options">
+          <select>
+            <!-- <option>Size</option> -->
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Color</option>
+            <option>Black</option>
+            <option>White</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Offer 2 -->
+      <div class="offer most-popular">
+        <div class="offer-header">
+          <label>
+            <input type="radio" name="offer" />
+            2 Unit <span class="discount">20% Off</span>
+          </label>
+          <span class="price"
+            >$18.00 USD<span class="original-price">$24.00 USD</span></span
+          >
+        </div>
+        <div class="options">
+          <select>
+            <!-- <option>Size</option> -->
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Color</option>
+            <option>Black</option>
+            <option>White</option>
+          </select>
+        </div>
+        <div class="options">
+          <select>
+            <!-- <option>Size</option> -->
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Color</option>
+            <option>Black</option>
+            <option>White</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Offer 3 -->
+      <div class="offer">
+        <div class="offer-header">
+          <label>
+            <input type="radio" name="offer" />
+            3 Unit <span class="discount">30% Off</span>
+          </label>
+          <span class="price"
+            >$24.00 USD<span class="original-price">$24.00 USD</span></span
+          >
+        </div>
+        <div class="options">
+          <select>
+            <!-- <option>Size</option> -->
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Color</option>
+            <option>Black</option>
+            <option>White</option>
+          </select>
+        </div>
+        <div class="options">
+          <select>
+            <!-- <option>Size</option> -->
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Color</option>
+            <option>Black</option>
+            <option>White</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="free-delivery">Free Delivery</div>
+      <div class="total">Total: $18.00 USD</div>
+      <a href="#" class="btn">Add to Cart</a>
+
+      <div class="footer">@ Powered by Pumper</div>
+    </div>
+
+    <script>
+   // Select all the offer boxes
+const offers = document.querySelectorAll(".offer");
+
+// Add a click event listener to each offer
+offers.forEach((offer) => {
+  offer.addEventListener("click", () => {
+    // Remove the 'active' class from all other offers
+    offers.forEach((otherOffer) => {
+      otherOffer.classList.remove("active");
+    });
+
+    // Add the 'active' class to the clicked offer
+    offer.classList.add("active");
+
+    // Collapse all other offers
+    offers.forEach((otherOffer) => {
+      if (otherOffer !== offer) {
+        otherOffer.classList.remove("expanded");
+      }
+    });
+
+    // Toggle the expanded state for the clicked offer
+    offer.classList.toggle("expanded");
+  });
+
+  // Add event listeners for dropdowns to stop propagation
+  const selects = offer.querySelectorAll("select");
+  selects.forEach((select) => {
+    select.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+  });
+});
+
+    </script>
+  </body>
+</html>
